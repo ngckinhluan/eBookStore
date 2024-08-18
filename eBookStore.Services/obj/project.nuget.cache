@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "6QBl0Ak2xIeq3jzxfKKHfNT7fv00wXGou3nO4cdjcdgAMna72v2TA8g70hJuPn56vaE75q2IzGhDmNmQuZ0Pag==",
+  "dgSpecHash": "T7f+778Kez0=",
   "success": true,
   "projectFilePath": "D:\\Code\\eBookStore_V2\\eBookStore.Services\\eBookStore.Services.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\luan.tran\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.4\\microsoft.netcore.app.ref.8.0.4.nupkg.sha512",
+    "C:\\Users\\luan.tran\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.4\\microsoft.windowsdesktop.app.ref.8.0.4.nupkg.sha512",
+    "C:\\Users\\luan.tran\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.4\\microsoft.aspnetcore.app.ref.8.0.4.nupkg.sha512"
+  ],
   "logs": []
 }

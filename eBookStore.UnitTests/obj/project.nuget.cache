@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NAfmZc9kTw4FE4eAHxs2FNNEZUHQgVkZAWrrZ0kWxbB72py+xcPmVx74Z22z/LymqcqIGrvnEY4fWk4K0yLdVg==",
+  "dgSpecHash": "nsWVIPAnMtM=",
   "success": true,
   "projectFilePath": "D:\\Code\\eBookStore_V2\\eBookStore.UnitTests\\eBookStore.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -92,7 +92,10 @@
     "C:\\Users\\luan.tran\\.nuget\\packages\\xunit.core\\2.5.3\\xunit.core.2.5.3.nupkg.sha512",
     "C:\\Users\\luan.tran\\.nuget\\packages\\xunit.extensibility.core\\2.5.3\\xunit.extensibility.core.2.5.3.nupkg.sha512",
     "C:\\Users\\luan.tran\\.nuget\\packages\\xunit.extensibility.execution\\2.5.3\\xunit.extensibility.execution.2.5.3.nupkg.sha512",
-    "C:\\Users\\luan.tran\\.nuget\\packages\\xunit.runner.visualstudio\\2.5.3\\xunit.runner.visualstudio.2.5.3.nupkg.sha512"
+    "C:\\Users\\luan.tran\\.nuget\\packages\\xunit.runner.visualstudio\\2.5.3\\xunit.runner.visualstudio.2.5.3.nupkg.sha512",
+    "C:\\Users\\luan.tran\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.4\\microsoft.netcore.app.ref.8.0.4.nupkg.sha512",
+    "C:\\Users\\luan.tran\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.4\\microsoft.windowsdesktop.app.ref.8.0.4.nupkg.sha512",
+    "C:\\Users\\luan.tran\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.4\\microsoft.aspnetcore.app.ref.8.0.4.nupkg.sha512"
   ],
   "logs": []
 }
