@@ -10,7 +10,7 @@ public class AuthorDao(AppDbContext context)
 {
     private AppDbContext Context => context;
 
-    public async Task<IEnumerable<Author>?> GetAuthors() => await Context.Authors.ToListAsync();
+    public async Task<IEnumerable<Author>?> GetAuthors() => await Context.Authors.Include(a => a.BookAuthors).ToListAsync();
 
     public async Task<Author?> GetAuthorById(string id) => await Context.Authors.FindAsync(id);
 

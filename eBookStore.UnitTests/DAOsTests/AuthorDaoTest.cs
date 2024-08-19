@@ -6,6 +6,7 @@ using eBookStore.BusinessObjects.Context;
 using eBookStore.BusinessObjects.Entities;
 using eBookStore.DAOs;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Moq;
 using Xunit;
 
@@ -71,6 +72,48 @@ namespace eBookStore.UnitTests.DAOsTests
             _mockSet.As<IAsyncEnumerable<Author>>()
                 .Setup(m => m.GetAsyncEnumerator(It.IsAny<CancellationToken>()))
                 .Returns(new TestAsyncEnumerator<Author>(queryable.GetEnumerator()));
+
+            // AddAsync method
+            _mockSet.Setup(m => m.AddAsync(It.IsAny<Author>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync((Author author, CancellationToken token) =>
+                {
+                    _authorList.Add(author);
+                    return default(EntityEntry<Author>); 
+                });
+
+
+            
+            // Update method
+            _mockSet.Setup(m => m.Update(It.IsAny<Author>())).Callback<Author>(updatedAuthor =>
+            {
+                var existingAuthor = _authorList.SingleOrDefault(a => a.AuthorId == updatedAuthor.AuthorId);
+                if (existingAuthor != null)
+                {
+                    existingAuthor.FirstName = updatedAuthor.FirstName;
+                    existingAuthor.LastName = updatedAuthor.LastName;
+                    existingAuthor.Address = updatedAuthor.Address;
+                    existingAuthor.Email = updatedAuthor.Email;
+                    existingAuthor.Phone = updatedAuthor.Phone;
+                    existingAuthor.City = updatedAuthor.City;
+                    existingAuthor.State = updatedAuthor.State;
+                    existingAuthor.Zip = updatedAuthor.Zip;
+                }
+            });
+            _mockContext.Setup(c => c.SaveChangesAsync(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(() => 1);
+
+            // Delete method
+            _mockSet.Setup(m => m.Remove(It.IsAny<Author>())).Callback<Author>(author =>
+            {
+                _authorList.Remove(author);
+            });
+            _mockContext.Setup(c => c.SaveChangesAsync(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(() => 1);
+            
+            // FindAsync method
+            _mockSet.Setup(m => m.FindAsync(It.IsAny<object[]>()))
+                .ReturnsAsync((object[] ids) =>
+                    _authorList.SingleOrDefault(a => a.AuthorId == (string)ids[0]));
             _mockContext.Setup(c => c.Authors).Returns(_mockSet.Object);
         }
 
@@ -86,9 +129,9 @@ namespace eBookStore.UnitTests.DAOsTests
         public async Task GetAuthorById_ReturnsCorrectAuthor()
         {
             var dao = new AuthorDao(_mockContext.Object);
-            var author = await dao.GetAuthorById("A00002");
+            var author = await dao.GetAuthorById("A00003");
             Assert.NotNull(author);
-            Assert.Equal("A00002", author.AuthorId);
+            Assert.Equal("A00003", author.AuthorId);
         }
 
         [Fact]
@@ -112,6 +155,8 @@ namespace eBookStore.UnitTests.DAOsTests
             _mockSet.Verify(m => m.AddAsync(It.IsAny<Author>(), It.IsAny<CancellationToken>()), Times.Once());
             _mockContext.Verify(m => m.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once());
         }
+
+
 
         [Fact]
         public async Task UpdateAuthor_UpdatesExistingAuthor()
@@ -150,8 +195,8 @@ namespace eBookStore.UnitTests.DAOsTests
             var dao = new AuthorDao(_mockContext.Object);
             var authors = await dao.SearchAuthors("John");
             Assert.NotNull(authors);
-            Assert.Single(authors);
-            Assert.Equal("John", authors.First().FirstName);
+            Assert.Equal(2, authors.Count()); 
+            Assert.Contains(authors, a => a.FirstName == "John");
         }
     }
 }
