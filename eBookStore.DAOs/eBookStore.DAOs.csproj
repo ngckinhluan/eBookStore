@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\eBookStore.BusinessObjects\eBookStore.BusinessObjects.csproj" />
+      <ProjectReference Include="..\eBookStore.Utils\eBookStore.Utils.csproj" />
+      <ProjectReference Include="..\eBookStore.Validations\eBookStore.Validations.csproj" />
+    </ItemGroup>
+
 </Project>
