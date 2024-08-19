@@ -1,3 +1,7 @@
+using System.Configuration;
+using eBookStore.BusinessObjects.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace eBookStore.API;
 
 public class Program
@@ -8,7 +12,6 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddAuthorization();
-
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();

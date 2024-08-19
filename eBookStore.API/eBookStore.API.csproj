@@ -16,4 +16,19 @@
       <Folder Include="Controllers\" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\eBookStore.BusinessObjects\eBookStore.BusinessObjects.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\eBookStore.BusinessObjects\eBookStore.BusinessObjects.csproj" />
+    </ItemGroup>
+
+
 </Project>
