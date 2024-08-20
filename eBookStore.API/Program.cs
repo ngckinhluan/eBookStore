@@ -1,6 +1,7 @@
 using System.Configuration;
 using eBookStore.BusinessObjects.Context;
 using Microsoft.EntityFrameworkCore;
+using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
 
 namespace eBookStore.API;
 
@@ -17,8 +18,14 @@ public class Program
         builder.Services.AddSwaggerGen();
         
         // Add DbContext to services
-        var connectionString = builder.Configuration.GetConnectionString("eBookStore");
-        builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
+        ConfigurationManager configuration = builder.Configuration;
+        builder.Services.AddDbContext<AppDbContext>(options =>
+        {
+            var connectionString = configuration.GetConnectionString("eBookStore");
+            options.UseSqlServer(connectionString);
+        });
+        // var connectionString = builder.Configuration.GetConnectionString("eBookStore");
+        // builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
 
         var app = builder.Build();
 

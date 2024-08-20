@@ -78,7 +78,7 @@ namespace eBookStore.UnitTests.DAOsTests
                 .ReturnsAsync((Author author, CancellationToken token) =>
                 {
                     _authorList.Add(author);
-                    return default(EntityEntry<Author>); 
+                    return default(EntityEntry<Author>);    
                 });
 
 
