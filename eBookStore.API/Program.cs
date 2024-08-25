@@ -1,65 +1,36 @@
-using System.Configuration;
-using eBookStore.BusinessObjects.Context;
-using Microsoft.EntityFrameworkCore;
-using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
 
-namespace eBookStore.API;
-
-public class Program
+namespace eBookStore.API
 {
-    public static void Main(string[] args)
+    public class Program
     {
-        var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
-        builder.Services.AddAuthorization();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-        
-        // Add DbContext to services
-        ConfigurationManager configuration = builder.Configuration;
-        builder.Services.AddDbContext<AppDbContext>(options =>
+        public static void Main(string[] args)
         {
-            var connectionString = configuration.GetConnectionString("eBookStore");
-            options.UseSqlServer(connectionString);
-        });
-        // var connectionString = builder.Configuration.GetConnectionString("eBookStore");
-        // builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
+            var builder = WebApplication.CreateBuilder(args);
 
-        var app = builder.Build();
+            // Add services to the container.
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
-        app.UseHttpsRedirection();
+            var app = builder.Build();
 
-        app.UseAuthorization();
-
-        var summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        app.MapGet("/weatherforecast", (HttpContext httpContext) =>
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
             {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                        new WeatherForecast
-                        {
-                            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                            TemperatureC = Random.Shared.Next(-20, 55),
-                            Summary = summaries[Random.Shared.Next(summaries.Length)]
-                        })
-                    .ToArray();
-                return forecast;
-            })
-            .WithName("GetWeatherForecast")
-            .WithOpenApi();
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
-        app.Run();
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+
+
+            app.MapControllers();
+
+            app.Run();
+        }
     }
 }
