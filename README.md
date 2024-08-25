@@ -1,1 +1,1 @@
-[![.NET](https://github.com/ngckinhluan/eBookStore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/ngckinhluan/eBookStore/actions/workflows/dotnet.yml)
+[![eBookStore (CI / CD applied).](https://github.com/ngckinhluan/eBookStore/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/ngckinhluan/eBookStore/actions/workflows/dotnet.yml)
