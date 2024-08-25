@@ -25,6 +25,8 @@ public partial class Book
 
     public DateOnly PublishedDate { get; set; }
 
+    public bool IsDeleted { get; set; } = false;
+
     public virtual ICollection<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
 
     public virtual Publisher Pub { get; set; } = null!;

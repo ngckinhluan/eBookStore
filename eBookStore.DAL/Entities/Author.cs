@@ -23,5 +23,7 @@ public partial class Author
 
     public string? Email { get; set; }
 
+    public bool IsDeleted { get; set; } = false;
+
     public virtual ICollection<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
 }

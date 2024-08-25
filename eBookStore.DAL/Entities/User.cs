@@ -27,6 +27,8 @@ public partial class User
 
     public DateOnly HireDate { get; set; }
 
+    public bool IsDeleted { get; set; } = false;
+
     public virtual Publisher Publisher { get; set; } = null!;
 
     public virtual Role Role { get; set; } = null!;
